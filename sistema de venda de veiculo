@@ -1,0 +1,38 @@
+create database wigycar;
+use wigycar;
+
+create table if not exists carro (
+id_car int primary key,
+modelo_car varchar(100) not null
+);
+
+create table if not exists cliente (
+    id_cliente int primary key,
+    nome_cliente varchar(100) not null,
+    cnh varchar(20) not null,  -- Alterado para varchar
+    email varchar(100) not null,
+    telefone varchar(20) not null  -- Alterado para varchar
+);
+
+create table if not exists concessionaria(
+id_conce int primary key,
+nome_conce varchar(100) not null,
+quantidade int not null,
+id_car int not null,
+constraint car_con foreign key (id_car) references carro(id_car)
+);
+
+create table if not exists tranf_veiculo(
+cod_transf int primary key,
+data_tranf date not null,
+id_cliente int not null,
+id_car int not null,
+constraint cli_tra foreign key (id_cliente) references cliente(id_cliente),
+constraint car_tra foreign key (id_car) references carro(id_car)
+);
+
+
+
+
+
+
